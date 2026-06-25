@@ -1,123 +1,121 @@
-# Packet Sniffer IDS
+# 🛡️ Packet Sniffer IDS
 
-A Python-based Packet Sniffer and Intrusion Detection System (IDS) developed as part of my cybersecurity learning journey.
-
-## Project Overview
-
-This project captures live network traffic and performs basic intrusion detection by analyzing packet activity, identifying the most active hosts, detecting suspicious behavior based on configurable thresholds, and generating security reports.
-
-The project was built to strengthen practical skills in network monitoring, packet analysis, intrusion detection, and cybersecurity defense concepts.
+A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed as part of my cybersecurity learning journey. This project captures live network traffic, analyzes packets, detects suspicious activity, and generates security reports.
 
 ---
 
-## Features
+## ✨ Features
 
-### Packet Monitoring
+### 📡 Packet Monitoring
 - Capture live network packets using Scapy
 - Display source and destination IP addresses
 - Detect network protocols (TCP, UDP, ICMP)
-- Timestamp captured packets
+- Timestamp every captured packet
 
-### Traffic Analysis
+### 📊 Traffic Analysis
 - Generate packet statistics
 - Count connections per IP address
-- Identify the most active IP address (Top Talker)
+- Identify the most active IP (Top Talker)
+- Count TCP connections for each IP
 
-### Security Monitoring
-- Detect suspicious activity based on configurable thresholds
-- Generate security alerts
-- Monitor network communication patterns
+### 🚨 Security Monitoring
+- Detect possible port scanning based on TCP connection thresholds
+- Detect suspicious network activity based on packet thresholds
+- Generate real-time security alerts
 
-### Logging & Reporting
-- Export packet logs to TXT files
-- Generate security reports
-- Record packet activity with timestamps
+### 📝 Logging & Reporting
+- Export captured packet logs to `packet_logs.txt`
+- Generate security reports in `security_report.txt`
+- Save timestamps for every captured packet
 
 ---
 
-## Technologies Used
+## 🛠️ Technologies Used
 
-- Python
+- Python 3
 - Scapy
 - Networking Concepts
 - Intrusion Detection Concepts
-- Git & GitHub
 
 ---
 
-## Current Status
+## 📂 Project Structure
 
-### Version 10 Completed
-
-Implemented Features:
-
-- Packet Capture
-- Source & Destination IP Detection
-- Protocol Detection
-- Packet Statistics
-- Packet Log Export
-- Connection Counting
-- Top Talker Detection
-- Suspicious Activity Detection
-- Security Report Generation
-- Timestamped Packet Logging
-
----
-
-## Example Output
-
-```text
-2026-06-10 14:46:02 | 192.168.1.4 --> 146.75.46.172 | TCP
-
-===== Statistics =====
-TCP Packets : 20
-UDP Packets : 0
-ICMP Packets: 0
-
-===== Top Talker =====
-Most Active IP: 192.168.1.4
-Packet Count : 10
-
-===== Suspicious Activity Detection =====
-No suspicious activity detected.
+```
+Packet-Sniffer/
+│
+├── packet_sniffer.py
+├── packet_logs.txt
+├── security_report.txt
+├── README.md
+├── .gitignore
 ```
 
 ---
 
-## Future Improvements
+## ▶️ How to Run
 
-- Port Scan Detection
-- Interactive Menu System
-- CSV Report Export
-- Dashboard Visualization
-- Real-Time Monitoring Dashboard
-- Enhanced Alerting Mechanisms
+### Clone the repository
 
----
+```bash
+git clone https://github.com/Himandi-Asirini/Packet-Sniffer-IDS.git
+```
 
-## Learning Outcomes
+### Navigate to the project
 
-Through this project, I gained practical experience in:
+```bash
+cd Packet-Sniffer-IDS
+```
 
-- Network Traffic Analysis
-- Packet Inspection
-- Intrusion Detection Fundamentals
-- Python Programming
-- Security Monitoring Concepts
-- Git and GitHub Workflow
+### Install Scapy
 
----
+```bash
+pip install scapy
+```
 
-## Repository
+### Run the program
 
-GitHub Repository:
-
-https://github.com/Himandi-Asirini/Packet-Sniffer-IDS
+```bash
+python packet_sniffer.py
+```
 
 ---
 
-## Author
+## 📈 Current Version
+
+**Version 11**
+
+### Implemented Features
+
+- ✅ Live Packet Capture
+- ✅ Timestamp Logging
+- ✅ TCP / UDP / ICMP Detection
+- ✅ Packet Statistics
+- ✅ Connection Counts
+- ✅ Top Talker Detection
+- ✅ TCP Connection Counting
+- ✅ Basic Port Scan Detection
+- ✅ Suspicious Activity Detection
+- ✅ Packet Log Export
+- ✅ Security Report Generation
+
+---
+
+## 🚀 Future Improvements
+
+- Detect scans using multiple destination ports
+- Dashboard for live traffic visualization
+- CSV report generation
+- Interactive command-line menu
+- Packet filtering by protocol
+- Export reports in JSON format
+- Email alert notifications
+- GeoIP lookup for external IP addresses
+
+---
+
+## 👩‍💻 Author
 
 **Himandi Asirini**
 
-Cybersecurity Undergraduate | SLIIT
+Cyber Security Undergraduate | Python Developer | Network Security Enthusiast
