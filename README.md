@@ -138,6 +138,30 @@ python packet_sniffer.py
 
 ---
 
+## 📸 Screenshots
+
+### Live Packet Capture
+
+![Live Packet Capture](images/live_capture.png)
+
+---
+
+### Traffic Statistics
+
+![Traffic Statistics](images/statistics.png)
+
+---
+
+### Port Scan Detection
+
+![Port Scan Detection](images/port_scan_detection.png)
+
+---
+
+### Security Report
+
+![Security Report](images/security_report.png)
+
 ## 👩‍💻 Author
 
 **Himandi Asirini**
