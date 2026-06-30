@@ -24,6 +24,7 @@ icmp_count = 0
 packet_logs = []
 connection_counts = {}
 port_scan_counts = {}
+port_scan_ports = {}
 
 # ==========================
 # Packet Processing
@@ -43,10 +44,17 @@ def process_packet(packet):
             protocol = "TCP"
             tcp_count += 1
 
+            destination_port = packet[TCP].dport
+
             if source_ip in port_scan_counts:
                 port_scan_counts[source_ip] += 1
             else:
                 port_scan_counts[source_ip] = 1
+
+            if source_ip not in port_scan_ports:
+                port_scan_ports[source_ip] = set()
+
+            port_scan_ports[source_ip].add(destination_port)
 
         elif packet.haslayer(UDP):
             protocol = "UDP"
@@ -139,6 +147,11 @@ print("\n===== TCP Connection Counts =====")
 for ip, count in port_scan_counts.items():
     print(f"{ip} : {count} TCP packets")
 
+print("\n===== Destination Ports =====")
+
+for ip, ports in port_scan_ports.items():
+    print(f"{ip} -> {sorted(ports)}")
+
 # ==========================
 # Port Scan Detection
 # ==========================
@@ -147,15 +160,16 @@ print("\n===== Port Scan Detection =====")
 
 port_scan_found = False
 
-for ip, count in port_scan_counts.items():
+for ip, ports in port_scan_ports.items():
 
-    if count > PORT_SCAN_THRESHOLD:
+    if len(ports) >= 5:
 
         port_scan_found = True
 
         print("[WARNING] Possible Port Scan Detected")
         print(f"Source IP : {ip}")
-        print(f"TCP Connections : {count}\n")
+        print(f"Unique Destination Ports : {len(ports)}")
+        print(f"Ports : {sorted(ports)}\n")
 
 if not port_scan_found:
     print("No port scan detected.")
@@ -224,17 +238,16 @@ with open("security_report.txt", "w") as report:
 
     port_scan_found = False
 
-    for ip, count in port_scan_counts.items():
+    for ip, ports in port_scan_ports.items():
 
-        if count > PORT_SCAN_THRESHOLD:
+        if len(ports) >= 5:
 
             port_scan_found = True
 
-            report.write(
-                f"Possible Port Scan Detected\n"
-            )
+            report.write("Possible Port Scan Detected\n")
             report.write(f"Source IP : {ip}\n")
-            report.write(f"TCP Connections : {count}\n\n")
+            report.write(f"Unique Destination Ports : {len(ports)}\n")
+            report.write(f"Ports : {sorted(ports)}\n\n")
 
     if not port_scan_found:
         report.write("No port scan detected.\n")
@@ -252,12 +265,8 @@ with open("security_report.txt", "w") as report:
 
             suspicious_found = True
 
-            report.write(
-                f"Suspicious IP : {ip}\n"
-            )
-            report.write(
-                f"Packet Count : {count}\n\n"
-            )
+            report.write(f"Suspicious IP : {ip}\n")
+            report.write(f"Packet Count : {count}\n\n")
 
     if not suspicious_found:
         report.write("No suspicious activity detected.\n")
