@@ -89,9 +89,51 @@ def process_packet(packet):
 # Start Capture
 # ==========================
 
-print("Capturing 20 packets...\n")
+print("========== Packet Sniffer IDS ==========")
+print("1. Capture All Packets")
+print("2. Capture TCP Packets")
+print("3. Capture UDP Packets")
+print("4. Capture ICMP Packets")
 
-sniff(count=20, prn=process_packet)
+choice = input("\nChoose an option (1-4): ")
+
+capture_filter = None
+
+if choice == "1":
+    capture_filter = None
+
+elif choice == "2":
+    capture_filter = "tcp"
+
+elif choice == "3":
+    capture_filter = "udp"
+
+elif choice == "4":
+    capture_filter = "icmp"
+
+else:
+    print("\nInvalid option selected.")
+    print("Please run the program again and choose a number between 1 and 4.")
+    exit()
+
+while True:
+
+    packet_count = input("\nEnter the number of packets to capture: ")
+
+    if packet_count.isdigit() and int(packet_count) > 0:
+        packet_count = int(packet_count)
+        break
+
+    print("\nInvalid packet count.")
+    print("Please enter a positive number.")
+
+print(f"\nCapturing {packet_count} packets...\n")
+
+sniff(
+    count=packet_count,
+    prn=process_packet,
+    filter=capture_filter
+)
 
 print("\nCapture Complete!")
 

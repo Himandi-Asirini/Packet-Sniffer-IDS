@@ -10,6 +10,8 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 - Capture live network packets using Scapy
 - Display source and destination IP addresses
 - Detect network protocols (TCP, UDP, ICMP)
+- Interactive protocol selection (All / TCP / UDP / ICMP)
+- User-defined packet capture count
 - Timestamp every captured packet
 
 ### 📊 Traffic Analysis
@@ -20,7 +22,7 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 - Track unique destination ports
 
 ### 🚨 Security Monitoring
-- Detect possible port scans using **unique destination ports**
+- Detect possible port scans using unique destination ports
 - Detect suspicious network activity based on packet thresholds
 - Reduce false positives during normal network browsing
 - Generate real-time security alerts
@@ -45,6 +47,14 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 
 ```text
 Packet-Sniffer/
+│
+├── images/
+│   ├── live_capture.png
+│   ├── statistics.png
+│   ├── port_scan_detection.png
+│   ├── security_report.png
+│   ├── v13_menu.png
+│   └── v13_packet_count.png
 │
 ├── packet_sniffer.py
 ├── README.md
@@ -85,11 +95,15 @@ python packet_sniffer.py
 
 ## 📈 Current Version
 
-**Version 12**
+**Version 13**
 
 ### ✅ Implemented Features
 
 - Live Packet Capture
+- Interactive Protocol Selection
+- User-defined Packet Capture Count
+- Menu Input Validation
+- Packet Count Validation Loop
 - Timestamp Logging
 - TCP / UDP / ICMP Detection
 - Packet Statistics
@@ -123,18 +137,25 @@ python packet_sniffer.py
 - Improved port scan detection using unique destination ports
 - Reduced false positives during normal HTTPS traffic
 
+### Version 13
+- Interactive packet capture menu
+- Protocol filtering (All, TCP, UDP, ICMP)
+- User-selectable packet capture count
+- Menu input validation
+- Packet count validation with retry loop
+
 ---
 
 ## 🚀 Future Improvements
 
-- Interactive command-line menu
 - CSV report export
 - JSON report export
 - Dashboard for live traffic visualization
-- Packet filtering by protocol
+- Packet filtering by IP address
 - SYN scan detection
 - Email alert notifications
 - GeoIP lookup for external IP addresses
+- Command-line argument support
 
 ---
 
@@ -161,6 +182,20 @@ python packet_sniffer.py
 ### Security Report
 
 ![Security Report](images/security_report.png)
+
+---
+
+### Interactive Capture Menu
+
+![Interactive Capture Menu](images/v13_menu.png)
+
+---
+
+### Packet Count Validation
+
+![Packet Count Validation](images/v13_packet_count.png)
+
+---
 
 ## 👩‍💻 Author
 
