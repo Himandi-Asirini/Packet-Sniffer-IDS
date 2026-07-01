@@ -1,6 +1,6 @@
 # 🛡️ Packet Sniffer IDS
 
-A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed as part of my cybersecurity learning journey. This project captures live network traffic, analyzes packets, detects suspicious activity, and generates security reports.
+A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed as part of my cybersecurity learning journey. This project captures live network traffic, analyzes packets, detects suspicious activity, and generates multiple security reports.
 
 ---
 
@@ -28,9 +28,11 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 - Generate real-time security alerts
 
 ### 📝 Logging & Reporting
-- Export captured packet logs to `packet_logs.txt`
-- Generate security reports in `security_report.txt`
-- Save timestamps for every captured packet
+- Export packet logs to `packet_logs.txt`
+- Generate detailed security reports in `security_report.txt`
+- Export packet statistics to `packet_statistics.csv`
+- Export IP address packet counts
+- Export destination port information
 
 ---
 
@@ -38,6 +40,7 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 
 - Python 3
 - Scapy
+- CSV Module
 - Networking Concepts
 - Intrusion Detection Concepts
 
@@ -54,13 +57,16 @@ Packet-Sniffer/
 │   ├── port_scan_detection.png
 │   ├── security_report.png
 │   ├── v13_menu.png
-│   └── v13_packet_count.png
+│   ├── v13_packet_count.png
+│   ├── v14_csv_terminal.png
+│   └── v14_csv_excel.png
 │
 ├── packet_sniffer.py
-├── README.md
-├── .gitignore
 ├── packet_logs.txt
-└── security_report.txt
+├── security_report.txt
+├── packet_statistics.csv
+├── README.md
+└── .gitignore
 ```
 
 ---
@@ -73,13 +79,13 @@ Packet-Sniffer/
 git clone https://github.com/Himandi-Asirini/Packet-Sniffer-IDS.git
 ```
 
-### Navigate to the project
+### Navigate into the project
 
 ```bash
 cd Packet-Sniffer-IDS
 ```
 
-### Install Scapy
+### Install dependencies
 
 ```bash
 pip install scapy
@@ -95,7 +101,7 @@ python packet_sniffer.py
 
 ## 📈 Current Version
 
-**Version 13**
+**Version 14**
 
 ### ✅ Implemented Features
 
@@ -115,6 +121,7 @@ python packet_sniffer.py
 - Suspicious Activity Detection
 - Packet Log Export
 - Security Report Generation
+- CSV Report Export
 
 ---
 
@@ -144,11 +151,16 @@ python packet_sniffer.py
 - Menu input validation
 - Packet count validation with retry loop
 
+### Version 14
+- CSV report export
+- Export packet statistics
+- Export IP address packet counts
+- Export destination port information
+
 ---
 
 ## 🚀 Future Improvements
 
-- CSV report export
 - JSON report export
 - Dashboard for live traffic visualization
 - Packet filtering by IP address
@@ -156,6 +168,7 @@ python packet_sniffer.py
 - Email alert notifications
 - GeoIP lookup for external IP addresses
 - Command-line argument support
+- Continuous packet monitoring mode
 
 ---
 
@@ -194,6 +207,18 @@ python packet_sniffer.py
 ### Packet Count Validation
 
 ![Packet Count Validation](images/v13_packet_count.png)
+
+---
+
+### CSV Report Export
+
+![CSV Report Export](images/v14_csv_terminal.png)
+
+---
+
+### CSV Report Preview
+
+![CSV Report Preview](images/v14_csv_excel.png)
 
 ---
 
