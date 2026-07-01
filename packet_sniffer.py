@@ -1,6 +1,7 @@
 from scapy.all import sniff
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 from datetime import datetime
+import csv
 
 # ==========================
 # Configuration
@@ -314,3 +315,45 @@ with open("security_report.txt", "w") as report:
         report.write("No suspicious activity detected.\n")
 
 print("\nSecurity report saved to security_report.txt")
+
+# ==========================
+# CSV Report Export
+# ==========================
+
+with open("packet_statistics.csv", "w", newline="") as csv_file:
+
+    writer = csv.writer(csv_file)
+
+    writer.writerow(["Metric", "Value"])
+
+    writer.writerow(["TCP Packets", tcp_count])
+    writer.writerow(["UDP Packets", udp_count])
+    writer.writerow(["ICMP Packets", icmp_count])
+
+    writer.writerow(
+        ["Total Packets",
+         tcp_count + udp_count + icmp_count]
+    )
+
+    if top_ip:
+        writer.writerow(["Top Talker", top_ip])
+        writer.writerow(
+            ["Top Talker Packet Count",
+             connection_counts[top_ip]]
+        )
+    
+    writer.writerow([])
+
+    writer.writerow(["IP Address", "Packet Count"])
+
+    for ip, count in connection_counts.items():
+        writer.writerow([ip, count])
+
+    writer.writerow([])
+
+    writer.writerow(["Source IP", "Destination Ports"])
+
+    for ip, ports in port_scan_ports.items():
+        writer.writerow([ip, ", ".join(map(str, sorted(ports)))])
+
+print("CSV report saved to packet_statistics.csv")

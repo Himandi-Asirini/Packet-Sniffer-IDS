@@ -1,0 +1,16 @@
+Metric,Value
+TCP Packets,3
+UDP Packets,2
+ICMP Packets,0
+Total Packets,5
+Top Talker,192.168.1.11
+Top Talker Packet Count,3
+
+IP Address,Packet Count
+192.168.1.11,3
+142.251.150.119,1
+104.18.36.252,1
+
+Source IP,Destination Ports
+104.18.36.252,59181
+192.168.1.11,443
