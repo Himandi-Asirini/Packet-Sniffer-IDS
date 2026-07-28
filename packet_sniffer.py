@@ -2,13 +2,37 @@ from scapy.all import sniff
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 from datetime import datetime
 import csv
+import argparse
 
 # ==========================
 # Configuration
 # ==========================
 
+# ==========================
+# Command-Line Arguments
+# ==========================
+
+parser = argparse.ArgumentParser(
+    description="Packet Sniffer IDS"
+)
+
+parser.add_argument(
+    "--protocol",
+    choices=["all", "tcp", "udp", "icmp"],
+    help="Protocol to capture"
+)
+
+parser.add_argument(
+    "--count",
+    type=int,
+    help="Number of packets to capture"
+)
+
+args = parser.parse_args()
+
 ALERT_THRESHOLD = 10
 PORT_SCAN_THRESHOLD = 8
+
 
 # ==========================
 # Statistics
@@ -86,47 +110,68 @@ def process_packet(packet):
             connection_counts[source_ip] = 1
 
 
+
+
 # ==========================
-# Start Capture
+# Capture Configuration
 # ==========================
 
-print("========== Packet Sniffer IDS ==========")
-print("1. Capture All Packets")
-print("2. Capture TCP Packets")
-print("3. Capture UDP Packets")
-print("4. Capture ICMP Packets")
+if args.protocol and args.count:
 
-choice = input("\nChoose an option (1-4): ")
+    protocol_map = {
+        "all": None,
+        "tcp": "tcp",
+        "udp": "udp",
+        "icmp": "icmp"
+    }
 
-capture_filter = None
+    capture_filter = protocol_map[args.protocol]
+    packet_count = args.count
 
-if choice == "1":
-    capture_filter = None
-
-elif choice == "2":
-    capture_filter = "tcp"
-
-elif choice == "3":
-    capture_filter = "udp"
-
-elif choice == "4":
-    capture_filter = "icmp"
+    print("========== Packet Sniffer IDS ==========")
+    print("Running in Command-Line Mode")
+    print(f"Protocol : {args.protocol.upper()}")
+    print(f"Packet Count : {packet_count}")
 
 else:
-    print("\nInvalid option selected.")
-    print("Please run the program again and choose a number between 1 and 4.")
-    exit()
 
-while True:
+    print("========== Packet Sniffer IDS ==========")
+    print("1. Capture All Packets")
+    print("2. Capture TCP Packets")
+    print("3. Capture UDP Packets")
+    print("4. Capture ICMP Packets")
 
-    packet_count = input("\nEnter the number of packets to capture: ")
+    choice = input("\nChoose an option (1-4): ")
 
-    if packet_count.isdigit() and int(packet_count) > 0:
-        packet_count = int(packet_count)
-        break
+    capture_filter = None
 
-    print("\nInvalid packet count.")
-    print("Please enter a positive number.")
+    if choice == "1":
+        capture_filter = None
+
+    elif choice == "2":
+        capture_filter = "tcp"
+
+    elif choice == "3":
+        capture_filter = "udp"
+
+    elif choice == "4":
+        capture_filter = "icmp"
+
+    else:
+        print("\nInvalid option selected.")
+        print("Please run the program again and choose a number between 1 and 4.")
+        exit()
+
+    while True:
+
+        packet_count = input("\nEnter the number of packets to capture: ")
+
+        if packet_count.isdigit() and int(packet_count) > 0:
+            packet_count = int(packet_count)
+            break
+
+        print("\nInvalid packet count.")
+        print("Please enter a positive number.")
 
 print(f"\nCapturing {packet_count} packets...\n")
 

@@ -11,6 +11,7 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 - Display source and destination IP addresses
 - Detect network protocols (TCP, UDP, ICMP)
 - Interactive protocol selection (All / TCP / UDP / ICMP)
+- Command-line protocol selection
 - User-defined packet capture count
 - Timestamp every captured packet
 
@@ -29,7 +30,7 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 
 ### 📝 Logging & Reporting
 - Export packet logs to `packet_logs.txt`
-- Generate detailed security reports in `security_report.txt`
+- Generate security reports in `security_report.txt`
 - Export packet statistics to `packet_statistics.csv`
 - Export IP address packet counts
 - Export destination port information
@@ -40,6 +41,7 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 
 - Python 3
 - Scapy
+- argparse
 - CSV Module
 - Networking Concepts
 - Intrusion Detection Concepts
@@ -59,7 +61,9 @@ Packet-Sniffer/
 │   ├── v13_menu.png
 │   ├── v13_packet_count.png
 │   ├── v14_csv_terminal.png
-│   └── v14_csv_excel.png
+│   ├── v14_csv_excel.png
+│   ├── v15_interactive_menu.png
+│   └── v15_command_line_mode.png
 │
 ├── packet_sniffer.py
 ├── packet_logs.txt
@@ -91,22 +95,49 @@ cd Packet-Sniffer-IDS
 pip install scapy
 ```
 
-### Run the program
+### Run in Interactive Mode
 
 ```bash
 python packet_sniffer.py
+```
+
+### Run in Command-Line Mode
+
+Capture TCP packets:
+
+```bash
+python packet_sniffer.py --protocol tcp --count 20
+```
+
+Capture UDP packets:
+
+```bash
+python packet_sniffer.py --protocol udp --count 20
+```
+
+Capture ICMP packets:
+
+```bash
+python packet_sniffer.py --protocol icmp --count 20
+```
+
+Capture all packets:
+
+```bash
+python packet_sniffer.py --protocol all --count 20
 ```
 
 ---
 
 ## 📈 Current Version
 
-**Version 14**
+**Version 15**
 
 ### ✅ Implemented Features
 
 - Live Packet Capture
 - Interactive Protocol Selection
+- Command-Line Argument Support
 - User-defined Packet Capture Count
 - Menu Input Validation
 - Packet Count Validation Loop
@@ -157,18 +188,26 @@ python packet_sniffer.py
 - Export IP address packet counts
 - Export destination port information
 
+### Version 15
+- Added command-line argument support using argparse
+- Capture packets without interactive prompts
+- Support protocol selection using `--protocol`
+- Support packet count using `--count`
+- Retained interactive mode as the default
+
 ---
 
 ## 🚀 Future Improvements
 
+- Continuous monitoring mode
 - JSON report export
 - Dashboard for live traffic visualization
 - Packet filtering by IP address
 - SYN scan detection
 - Email alert notifications
 - GeoIP lookup for external IP addresses
-- Command-line argument support
-- Continuous packet monitoring mode
+- Packet size analysis
+- Console color support
 
 ---
 
@@ -198,15 +237,15 @@ python packet_sniffer.py
 
 ---
 
-### Interactive Capture Menu
+### Interactive Menu
 
-![Interactive Capture Menu](images/v13_menu.png)
+![Interactive Menu](images/v15_interactive_menu.png)
 
 ---
 
-### Packet Count Validation
+### Command-Line Mode
 
-![Packet Count Validation](images/v13_packet_count.png)
+![Command-Line Mode](images/v15_command_line_mode.png)
 
 ---
 
