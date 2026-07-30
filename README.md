@@ -13,6 +13,7 @@ A Python-based **Packet Sniffer and Intrusion Detection System (IDS)** developed
 - Interactive protocol selection (All / TCP / UDP / ICMP)
 - Command-line protocol selection
 - User-defined packet capture count
+- Continuous monitoring mode
 - Timestamp every captured packet
 
 ### 📊 Traffic Analysis
@@ -63,7 +64,9 @@ Packet-Sniffer/
 │   ├── v14_csv_terminal.png
 │   ├── v14_csv_excel.png
 │   ├── v15_interactive_menu.png
-│   └── v15_command_line_mode.png
+│   ├── v15_command_line_mode.png
+│   ├── v16_continuous_monitoring.png
+│   └── v16_stop_capture.png
 │
 ├── packet_sniffer.py
 ├── packet_logs.txt
@@ -95,33 +98,43 @@ cd Packet-Sniffer-IDS
 pip install scapy
 ```
 
-### Run in Interactive Mode
+---
+
+## 🖥️ Run in Interactive Mode
 
 ```bash
 python packet_sniffer.py
 ```
 
-### Run in Command-Line Mode
+The program will let you:
 
-Capture TCP packets:
+- Select protocol (All / TCP / UDP / ICMP)
+- Choose Fixed Packet Capture or Continuous Monitoring
+- Enter the number of packets (Fixed mode)
+
+---
+
+## 💻 Run in Command-Line Mode
+
+Capture TCP packets
 
 ```bash
 python packet_sniffer.py --protocol tcp --count 20
 ```
 
-Capture UDP packets:
+Capture UDP packets
 
 ```bash
 python packet_sniffer.py --protocol udp --count 20
 ```
 
-Capture ICMP packets:
+Capture ICMP packets
 
 ```bash
 python packet_sniffer.py --protocol icmp --count 20
 ```
 
-Capture all packets:
+Capture all packets
 
 ```bash
 python packet_sniffer.py --protocol all --count 20
@@ -131,16 +144,18 @@ python packet_sniffer.py --protocol all --count 20
 
 ## 📈 Current Version
 
-**Version 15**
+**Version 16**
 
 ### ✅ Implemented Features
 
 - Live Packet Capture
 - Interactive Protocol Selection
 - Command-Line Argument Support
+- Fixed Packet Capture
+- Continuous Monitoring Mode
 - User-defined Packet Capture Count
 - Menu Input Validation
-- Packet Count Validation Loop
+- Packet Count Validation
 - Timestamp Logging
 - TCP / UDP / ICMP Detection
 - Packet Statistics
@@ -171,7 +186,6 @@ python packet_sniffer.py --protocol all --count 20
 - Basic TCP threshold-based port scan detection
 
 ### Version 12
-- Unique destination port tracking
 - Improved port scan detection using unique destination ports
 - Reduced false positives during normal HTTPS traffic
 
@@ -180,7 +194,7 @@ python packet_sniffer.py --protocol all --count 20
 - Protocol filtering (All, TCP, UDP, ICMP)
 - User-selectable packet capture count
 - Menu input validation
-- Packet count validation with retry loop
+- Packet count validation
 
 ### Version 14
 - CSV report export
@@ -195,18 +209,24 @@ python packet_sniffer.py --protocol all --count 20
 - Support packet count using `--count`
 - Retained interactive mode as the default
 
+### Version 16
+- Added Continuous Monitoring Mode
+- Capture packets until the user presses **Ctrl + C**
+- Automatic report generation after monitoring stops
+- Improved monitoring workflow with graceful shutdown messages
+
 ---
 
 ## 🚀 Future Improvements
 
-- Continuous monitoring mode
+- DNS hostname resolution
+- Packet size analysis
 - JSON report export
 - Dashboard for live traffic visualization
 - Packet filtering by IP address
 - SYN scan detection
 - Email alert notifications
 - GeoIP lookup for external IP addresses
-- Packet size analysis
 - Console color support
 
 ---
@@ -258,6 +278,18 @@ python packet_sniffer.py --protocol all --count 20
 ### CSV Report Preview
 
 ![CSV Report Preview](images/v14_csv_excel.png)
+
+---
+
+### Continuous Monitoring
+
+![Continuous Monitoring](images/v16_continuous_monitoring.png)
+
+---
+
+### Monitoring Stopped
+
+![Monitoring Stopped](images/v16_stop_capture.png)
 
 ---
 

@@ -162,6 +162,22 @@ else:
         print("Please run the program again and choose a number between 1 and 4.")
         exit()
 
+    print("\nCapture Mode")
+print("1. Fixed Packet Capture")
+print("2. Continuous Monitoring")
+
+while True:
+
+    capture_mode = input("\nChoose capture mode (1-2): ")
+
+    if capture_mode in ["1", "2"]:
+        break
+
+    print("\nInvalid option.")
+    print("Please choose 1 or 2.")
+
+if capture_mode == "1":
+
     while True:
 
         packet_count = input("\nEnter the number of packets to capture: ")
@@ -173,15 +189,39 @@ else:
         print("\nInvalid packet count.")
         print("Please enter a positive number.")
 
-print(f"\nCapturing {packet_count} packets...\n")
+else:
 
-sniff(
-    count=packet_count,
-    prn=process_packet,
-    filter=capture_filter
-)
+    packet_count = 0
 
-print("\nCapture Complete!")
+if packet_count > 0:
+
+    print(f"\nCapturing {packet_count} packets...\n")
+
+    sniff(
+        count=packet_count,
+        prn=process_packet,
+        filter=capture_filter
+    )
+
+    print("\nCapture Complete!")
+
+else:
+
+    print("\nStarting continuous monitoring...")
+    print("Press Ctrl + C to stop.\n")
+
+    try:
+
+        sniff(
+            prn=process_packet,
+            filter=capture_filter
+        )
+
+    finally:
+
+        print("\nStopping capture...")
+        print("Generating reports...")
+        print("Capture Complete!")
 
 # ==========================
 # Statistics
